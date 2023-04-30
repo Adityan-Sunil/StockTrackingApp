@@ -63,11 +63,13 @@
                       }
                   }
               },
+              responsive: true,
+              maintainAspectRatio: false
           },
       });
   });
 </script>
 
-<div class="card bg-gradient-info">
-  <canvas id="myChart" width="400" height="100" bind:this={ctx} />
+<div class="card bg-gradient-info container mt-20" style="height: 500px">
+  <canvas id="myChart" bind:this={ctx} />
 </div>
