@@ -50,7 +50,7 @@
           options: {
               scales: {
                   y: {
-                      beginAtZero: true,
+                      beginAtZero: false,
                       title: {
                         text: 'Price (INR)',
                         display: true
