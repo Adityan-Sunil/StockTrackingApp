@@ -110,6 +110,26 @@
                 defaultModal = true;
             }
         });     
+
+        const savedStockRef = ref(database,'savedStocks');
+        const stockRef = ref(database, 'stocks/');
+
+        onValue(savedStockRef, (data) => {
+            if(data.exists() && data.val() !== "") {
+                stockNameSelectedList = data.val().split(',');
+                displayStockNameList = Array.from(stockNameSelectedList);
+                filteredDisplayNameList = filterInputValueOnList(displayStockNameList, undefined, true);
+            }
+        });
+        
+        onValue(stockRef, (data) => {
+            if(data.exists()) {
+                const stocks = Object.keys(data.val());
+                stocks.forEach(stock => selectedStockData[stock] = data.val()[stock]);
+                parseStockData()
+            }
+        })
+
     }
 
     function clearData() {
@@ -140,7 +160,7 @@
     }
 
     function addNameToSelectedStockList(name) {
-        addNameToStockList(stockNameSelectedList, name);
+        stockNameSelectedList = addNameToStockList(stockNameSelectedList, name);
         filteredStockNameSelectionList = [];
         stockNameInput = name;
     }
